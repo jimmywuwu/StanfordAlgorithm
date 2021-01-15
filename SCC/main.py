@@ -1,6 +1,8 @@
-import sys 
+import sys,resource 
 
-sys.setrecursionlimit(9000000)
+sys.setrecursionlimit(2**20)
+hardlimit=resource.getrlimit(resource.RLIMIT_STACK)[1]
+resource.setrlimit(resource.RLIMIT_STACK,(hardlimit,hardlimit))
 
 class SCC:
     def __init__(self):
@@ -67,5 +69,8 @@ class SCC:
             return 1+agg
         return 0
 
-SCC()
+if __init__=='__main__':
+    s=SCC()
+    s.res.sort()
+    print(s[-10:])
 
